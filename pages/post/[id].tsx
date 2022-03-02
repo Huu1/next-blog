@@ -1,14 +1,15 @@
 import Link from "next/link";
-import React, { useEffect, useRef } from "react";
+import React, { useContext, useEffect, useRef } from "react";
 import { ArticleHeader } from "../../components/Article";
 import UserInfo from "../../components/UserInfo";
 import { API } from "../../config";
 import { marked } from 'marked';
-import 'highlight.js/styles/github.css';
+import 'highlight.js/styles/color-brewer.css';
+import { ThemeContext } from "../../context/themeContext";
 // 此函数在构建时被调用
 export async function getStaticPaths() {
   // 调用外部 API 获取博文列表
-  const res = await fetch(`${API}/article/queryAllPublish`);
+  const res = await fetch(`${API}/article/queryAllPublish?current=1&pageSize=999`);
   const data = await res.json();
 
   // 据博文列表生成所有需要预渲染的路径
@@ -18,11 +19,12 @@ export async function getStaticPaths() {
 
   // We'll pre-render only these paths at build time.
   // { fallback: false } means other routes should 404.
-  return { paths, fallback: false };
+  return { paths, fallback: 'blocking' };
 }
 
 // 在构建时也会被调用
 export async function getStaticProps({ params }: any) {
+  
   // params 包含此片博文的 `id` 信息。
   // 如果路由是 /posts/1，那么 params.id 就是 1
   const res = await fetch(`${API}/article/${params.id}`);
@@ -77,6 +79,7 @@ const TagList = ({ data, type }: { data: any[]; type: LINK_TYPE }) => {
 };
 
 const Post = ({ post }: any) => {
+  const [isDark, changeDark] = useContext(ThemeContext);
   const dom =useRef<any>();
   useEffect(()=>{
     marked.setOptions({
@@ -96,10 +99,10 @@ const Post = ({ post }: any) => {
     });
     dom.current!.innerHTML=marked.parse(post.content.content)
   },[post])
+
   return (
     <>
       <ArticleHeader
-        style={{ fontSize: "2rem" }}
         articleId={post?.articleId}
         title={post?.title}
         readTime={post?.readTime}
@@ -119,13 +122,10 @@ const Post = ({ post }: any) => {
         )}
       </ArticleHeader>
 
-      <div className="mt-4">
-        {/* <ReactMarkdown className="markdown-body">
-          {post.content.content}
-        </ReactMarkdown> */}
-        <div className="markdown-body" ref={dom}></div>
+      <div className="mt-10">
+        <div className={`${isDark? 'markdown-body-dark':'markdown-body'} `} ref={dom}></div>
         {post?.label && post?.label.length > 0 && (
-          <div className="text-base mt-7 dark:text-gray-400">
+          <div className="text-base mt-10 dark:text-gray-400">
             标签：
             <TagList data={post?.label || []} type={LINK_TYPE.LABEL} />
           </div>

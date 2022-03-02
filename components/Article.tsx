@@ -25,13 +25,13 @@ export const ArticleHeader = (props: {
     <header>
       <Link href={"/post/" + articleId}  passHref>
         <h3
-          className="text-3xl mb-2	mt-12 font-black text-pink-800 dark:text-pink-300 cursor-pointer"
+          className="text-2xl mb-4	mt-8 font-black text-pink-800 dark:text-pink-300 cursor-pointer"
           style={{ ...props.style }}
         >
           {title}
         </h3>
       </Link>
-      <small className="text-sm font-mono dark:text-gray-300">
+      <small className="text-sm text-gray-500 font-mono dark:text-gray-300">
         {dayjs(time).format("MMM D, YYYY")} • {coffeeNum(readTime)} {readTime}{" "}
         min read
       </small>

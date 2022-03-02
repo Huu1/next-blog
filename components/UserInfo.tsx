@@ -1,10 +1,10 @@
 import Image from 'next/image';
-import React, { useContext, useEffect } from 'react';
+import React from 'react';
+import { siteMetadata } from '../siteMetadata';
 
 const imgWidth = 56;
 
 import avatar from "../public/img.jpg";
-import Music from './Musice';
 
 const UserInfo = (props:any) => {
   
@@ -20,9 +20,9 @@ const UserInfo = (props:any) => {
       </div>
       <div className='info flex-1 tracking-wide break-all dark:text-white	'>
         <h4>
-          hy的个人博客~
+          {siteMetadata.title}
           <br />
-          记录一些记不住的事情。
+          {siteMetadata.description}
         </h4>
       </div>
     </div>

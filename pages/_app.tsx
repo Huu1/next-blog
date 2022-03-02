@@ -3,8 +3,10 @@ import React from "react";
 import Layout from "../components/Layout";
 import Router from "next/router";
 import "tailwindcss/tailwind.css";
+import "../styles/globals.css";
 import "../styles/react-markdown.css";
-import '../styles/globals.css';
+import "../styles/react-markdown-dark.css";
+import DarkContext from "../context/themeContext";
 
 initRouterListeners();
 function initRouterListeners() {
@@ -38,9 +40,11 @@ function initRouterListeners() {
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <Layout>
-      <Component {...pageProps} />
-    </Layout>
+    <DarkContext>
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
+    </DarkContext>
   );
 }
 
