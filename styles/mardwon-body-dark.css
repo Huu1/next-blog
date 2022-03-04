@@ -4,7 +4,7 @@
   -webkit-text-size-adjust: 100%;
   margin: 0;
   color: #c9d1d9;
-  background-color: #1F2937;
+  /* background-color: #0d1117; */
   font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
   font-size: 16px;
   line-height: 1.5;
@@ -117,7 +117,6 @@
 .markdown-body-dark samp {
   font-family: monospace,monospace;
   font-size: 1em;
-  color: #E2E3E7;
 }
 
 .markdown-body-dark figure {
@@ -333,7 +332,6 @@
   font-family: ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,Liberation Mono,monospace;
   font-size: 12px;
   word-wrap: normal;
-  color: #E2E3E7;
 }
 
 .markdown-body-dark .octicon {
@@ -493,22 +491,22 @@
   height: 1em;
 }
 
-.markdown-body-dark::before {
+.markdown-body::before {
   display: table;
   content: "";
 }
 
-.markdown-body-dark::after {
+.markdown-body::after {
   display: table;
   clear: both;
   content: "";
 }
 
-.markdown-body-dark>*:first-child {
+.markdown-body>*:first-child {
   margin-top: 0 !important;
 }
 
-.markdown-body-dark>*:last-child {
+.markdown-body>*:last-child {
   margin-bottom: 0 !important;
 }
 
@@ -542,7 +540,6 @@
 .markdown-body-dark details {
   margin-top: 0;
   margin-bottom: 16px;
-  color: #E2E3E7;
 }
 
 .markdown-body-dark blockquote>:first-child {
@@ -806,7 +803,6 @@
 
 .markdown-body-dark pre code {
   font-size: 100%;
-  color: #E2E3E7;
 }
 
 .markdown-body-dark pre>code {
@@ -825,18 +821,12 @@
 .markdown-body-dark .highlight pre {
   margin-bottom: 0;
   word-break: normal;
-  color: #E2E3E7;
 }
 
 .markdown-body-dark .highlight pre,
 .markdown-body-dark pre {
-  padding: 16px;
-  overflow: auto;
-  font-size: 85%;
-  line-height: 1.45;
-  /* background-color: #161b22; */
-  border-radius: 6px;
-  color: white;
+    line-height: 1.45;
+    border-radius: 6px;
 }
 
 .markdown-body-dark pre code,
@@ -850,7 +840,6 @@
   word-wrap: normal;
   background-color: transparent;
   border: 0;
-  color: #E2E3E7;
 }
 
 .markdown-body-dark .csv-data td,

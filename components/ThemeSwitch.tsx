@@ -1,5 +1,4 @@
-import { useContext, useEffect, useState } from 'react'
-import { useTheme } from 'next-themes'
+import { useContext, useEffect, useState } from 'react';
 import { ThemeContext } from '../context/themeContext';
 
 const ThemeSwitch = () => {

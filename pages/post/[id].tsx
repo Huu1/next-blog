@@ -3,13 +3,17 @@ import React, { useContext, useEffect, useRef } from "react";
 import { ArticleHeader } from "../../components/Article";
 import UserInfo from "../../components/UserInfo";
 import { API } from "../../config";
-import { marked } from 'marked';
-import 'highlight.js/styles/color-brewer.css';
 import { ThemeContext } from "../../context/themeContext";
+import ReactMarkdown from "react-markdown";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { atomDark as codeStyle } from "react-syntax-highlighter/dist/cjs/styles/prism";
+
 // 此函数在构建时被调用
 export async function getStaticPaths() {
   // 调用外部 API 获取博文列表
-  const res = await fetch(`${API}/article/queryAllPublish?current=1&pageSize=999`);
+  const res = await fetch(
+    `${API}/article/queryAllPublish?current=1&pageSize=999`
+  );
   const data = await res.json();
 
   // 据博文列表生成所有需要预渲染的路径
@@ -19,12 +23,11 @@ export async function getStaticPaths() {
 
   // We'll pre-render only these paths at build time.
   // { fallback: false } means other routes should 404.
-  return { paths, fallback: 'blocking' };
+  return { paths, fallback: "blocking" };
 }
 
 // 在构建时也会被调用
 export async function getStaticProps({ params }: any) {
-  
   // params 包含此片博文的 `id` 信息。
   // 如果路由是 /posts/1，那么 params.id 就是 1
   const res = await fetch(`${API}/article/${params.id}`);
@@ -51,9 +54,7 @@ const TagLink = ({
   const url = `/?${type}=${value}`;
   return (
     <Link href={url}>
-      <a
-        className="text-base	font-medium text-pink-800 dark:text-pink-300 underline"
-      >
+      <a className="text-base	font-medium text-pink-800 dark:text-pink-300 underline">
         {type !== LINK_TYPE.TAG ? "#" : ""}
         {name}
       </a>
@@ -63,7 +64,7 @@ const TagLink = ({
 
 const TagList = ({ data, type }: { data: any[]; type: LINK_TYPE }) => {
   return (
-    < >
+    <>
       {data
         .filter((i: any) => i.status === "on")
         .map(({ labelId, title }, index: number, array) => {
@@ -79,26 +80,7 @@ const TagList = ({ data, type }: { data: any[]; type: LINK_TYPE }) => {
 };
 
 const Post = ({ post }: any) => {
-  const [isDark, changeDark] = useContext(ThemeContext);
-  const dom =useRef<any>();
-  useEffect(()=>{
-    marked.setOptions({
-      highlight: function(code, lang) {
-        const hljs = require('highlight.js');
-        const language = hljs.getLanguage(lang) ? lang : 'js';
-        return hljs.highlight(code, { language }).value;
-      },
-      langPrefix: 'hljs language-', // highlight.js css expects a top-level 'hljs' class.
-      pedantic: false,
-      gfm: true,
-      breaks: false,
-      sanitize: false,
-      smartLists: true,
-      smartypants: false,
-      xhtml: false
-    });
-    dom.current!.innerHTML=marked.parse(post.content.content)
-  },[post])
+  const [isDark] = useContext(ThemeContext);
 
   return (
     <>
@@ -109,7 +91,7 @@ const Post = ({ post }: any) => {
         time={post?.publishTime}
       >
         {post?.tag ? (
-          <span className="text-sm	mt-1.5">
+          <span className="text-sm text-gray-500 font-mono dark:text-gray-300 mt-1.5">
             <span>&nbsp;• &nbsp;</span>
             <TagLink
               value={post?.tag.tagId}
@@ -123,7 +105,32 @@ const Post = ({ post }: any) => {
       </ArticleHeader>
 
       <div className="mt-10">
-        <div className={`${isDark? 'markdown-body-dark':'markdown-body'} `} ref={dom}></div>
+        {/* <div className={`${isDark? 'markdown-body-dark':'markdown-body'} `} ref={dom}></div> */}
+        <ReactMarkdown
+          className={`${isDark? 'markdown-body-dark':'markdown-body'} `}
+          components={{
+            code({ node, inline, className, children, ...props }) {
+              const match = /language-(\w+)/.exec(className || "js");
+              return !inline && match ? (
+                <SyntaxHighlighter
+                  style={codeStyle}
+                  language={match[1]}
+                  PreTag="div"
+                  {...props}
+                >
+                  {String(children).replace(/\n$/, "")}
+                </SyntaxHighlighter>
+              ) : (
+                <code className={className} {...props}>
+                  {children}
+                </code>
+              );
+            },
+          }}
+        >
+          {post?.content?.content}
+        </ReactMarkdown>
+        ,
         {post?.label && post?.label.length > 0 && (
           <div className="text-base mt-10 dark:text-gray-400">
             标签：
@@ -138,7 +145,7 @@ const Post = ({ post }: any) => {
         <div className="mb-3">
           {post?.previous && (
             <Link href={`/post/${post?.previous.articleId}`} passHref>
-              <span className='text-pink-800 dark:text-pink-300 '>
+              <span className="text-pink-800 dark:text-pink-300 ">
                 👈{post?.previous.title}
               </span>
             </Link>
@@ -146,7 +153,7 @@ const Post = ({ post }: any) => {
         </div>
         {post?.next && (
           <Link href={`/post/${post?.next.articleId}`} passHref>
-            <span className='text-pink-800 dark:text-pink-300 '>
+            <span className="text-pink-800 dark:text-pink-300 ">
               {post?.next.title}👉👉
             </span>
           </Link>

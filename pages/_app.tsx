@@ -1,12 +1,14 @@
 import type { AppProps } from "next/app";
 import React from "react";
 import Layout from "../components/Layout";
-import Router from "next/router";
-import "tailwindcss/tailwind.css";
-import "../styles/globals.css";
-import "../styles/react-markdown.css";
-import "../styles/react-markdown-dark.css";
+import Router, { useRouter } from "next/router";
+import NProgress from "nprogress";
 import DarkContext from "../context/themeContext";
+
+import "../styles/globals.css";
+import "../styles/markdown-body.css";
+import "../styles/mardwon-body-dark.css";
+import "../styles/nprogress.css";
 
 initRouterListeners();
 function initRouterListeners() {
@@ -39,6 +41,14 @@ function initRouterListeners() {
 }
 
 function MyApp({ Component, pageProps }: AppProps) {
+  const router = useRouter();
+
+  if (router?.events?.on) {
+    router.events.on("routeChangeStart", NProgress.start);
+    router.events.on("routeChangeComplete", NProgress.done);
+    router.events.on("routeChangeError", NProgress.done);
+  }
+
   return (
     <DarkContext>
       <Layout>
