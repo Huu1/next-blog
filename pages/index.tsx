@@ -1,7 +1,9 @@
 import type { NextPage } from "next";
+import { useContext } from "react";
 import Article from "../components/Article";
 import UserInfo from "../components/UserInfo";
 import { API } from "../config";
+import { ThemeContext } from "../context/themeContext";
 import { IArticle } from "../types";
 
 // 此函数在构建时被调用
@@ -20,6 +22,8 @@ export async function getStaticProps() {
 }
 
 const Home: NextPage = ({ posts }: any) => {
+  const [isDark] = useContext(ThemeContext);
+  console.log(isDark);
   
   return (
     <div>

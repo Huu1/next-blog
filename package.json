@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start -p 10086",
+    "dev": "cross-env NODE_ENV=development && next dev -p 8080",
+    "build": "cross-env NODE_ENV=production next build",
+    "start": "cross-env NODE_ENV=production  && next start -p 10086",
     "lint": "next lint"
   },
   "dependencies": {
@@ -16,7 +16,8 @@
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-markdown": "^8.0.0",
-    "react-syntax-highlighter": "^15.4.5"
+    "react-syntax-highlighter": "^15.4.5",
+    "remark-gfm": "^3.0.1"
   },
   "devDependencies": {
     "@types/marked": "^4.0.2",
@@ -26,6 +27,7 @@
     "@types/react-syntax-highlighter": "^13.5.2",
     "autoprefixer": "^10.4.2",
     "babel-plugin-styled-components": "^2.0.6",
+    "cross-env": "^7.0.3",
     "eslint": "8.10.0",
     "eslint-config-next": "12.1.0",
     "postcss": "^8.4.7",

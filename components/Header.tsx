@@ -1,6 +1,6 @@
 import Link from "./Link";
 import React, { useContext } from "react";
-import Music from "./Musice";
+import Music from "./Music/MusicInit";
 import MobileNav from "./MobileNav";
 import { headerNavLinks } from "../config";
 import ThemeSwitch from "./ThemeSwitch";
@@ -12,7 +12,7 @@ function Header() {
   // const [isDark, changeDark] = useContext(ThemeContext);
 
   return (
-    <div className="mb-10 flex justify-between items-center">
+    <div className="flex justify-between items-center">
       <Link href='/'>
         <h1 className="text-3xl font-black dark:text-white cursor-pointer">
           {siteMetadata.headerTitle}

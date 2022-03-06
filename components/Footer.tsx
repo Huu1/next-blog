@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { siteMetadata } from "../siteMetadata";
+import SocialIcon from "./social-icons";
+import Github from "../../public/github.svg";
 
 export default function Footer() {
   return (
@@ -10,7 +12,7 @@ export default function Footer() {
           <div>{` • `}</div>
           <div>{`© ${new Date().getFullYear()}`}</div>
           <div>{` • `}</div>
-          <Link href="/">{siteMetadata.title}</Link>
+          <SocialIcon kind="github" size={20} href={siteMetadata.github} />
         </div>
       </div>
     </footer>

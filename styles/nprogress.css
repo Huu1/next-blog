@@ -34,11 +34,11 @@
   display: block;
   position: fixed;
   z-index: 1031;
-  top: 15px;
-  right: 15px;
-} */
+  top: 5px;
+  left: 5px;
+}
 
-/* #nprogress .spinner-icon {
+#nprogress .spinner-icon {
   width: 18px;
   height: 18px;
   box-sizing: border-box;

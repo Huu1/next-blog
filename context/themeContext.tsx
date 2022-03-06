@@ -13,23 +13,21 @@ export const useToggle = (initialState: boolean = false) => {
   return [state, toggle];
 };
 
-export const setItem = (key: string, value: any) => {
-  if (typeof window !== "undefined") {
-    localStorage.setItem(key, value);
-  }
-};
-export const getItem = (key: string): any => {
-  if (typeof window !== "undefined") {
-    return localStorage.getItem(key);
-  }
-};
+// const setItem = (key: string, value: any) => {
+//   if (typeof window !== "undefined") {
+//     localStorage.setItem(key, value);
+//   }
+// };
+// const getItem = (key: string): any => {
+//   if (typeof window !== "undefined") {
+//     return localStorage.getItem(key);
+//   }
+// };
 
 const initToggle = () => {
   if (typeof window !== "undefined") {
-   return (getItem(THEME_KEY) && getItem(THEME_KEY) === "dark") ||
-      (!(THEME_KEY in localStorage) &&
-        window.matchMedia("(prefers-color-scheme: dark)").matches);
-  }else {
+    return window.matchMedia("(prefers-color-scheme: dark)").matches;
+  } else {
     return false;
   }
 };
@@ -37,20 +35,29 @@ const initToggle = () => {
 export const ThemeContext = React.createContext<any>(null);
 
 function DarkContext(props: any) {
-  const [isDark, changeDark] = useToggle(initToggle());
-
+  const [isDark, changeDark] = useState(initToggle());
+  const [ref, setRef] = useState<any>();
+  
   useEffect(() => {
     if (isDark) {
       document.documentElement.classList.add("dark");
-      setItem(THEME_KEY, "dark");
     } else {
       document.documentElement.classList.remove("dark");
-      setItem(THEME_KEY, "light");
     }
   }, [isDark]);
 
+  useEffect(()=>{
+    if(ref?.current) {
+      if(isDark) {
+        ref.current?.classList.add('markdown-body-dark')
+      }else {
+        ref.current?.classList.remove('markdown-body-dark')
+      }
+    }
+  },[ref,isDark])
+
   return (
-    <ThemeContext.Provider value={[isDark, changeDark]}>
+    <ThemeContext.Provider value={[isDark, changeDark,setRef]}>
       {props.children}
     </ThemeContext.Provider>
   );

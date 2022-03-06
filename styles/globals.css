@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
 .music-wrap {
   width: 32px;
   height: 32px;
@@ -19,33 +18,29 @@
   box-sizing: border-box;
   margin-left: 5px;
 }
+
 .play {
-  width: 0;
-  height: 0;
-  border-top: 7px solid transparent;
-  border-left: 11px solid white;
-  border-bottom: 7px solid transparent;
+  animation: music-spinner 10s linear infinite;
 }
 
 .active {
-  animation: rotateAlbumArt 5s linear 0s infinite forwards;
+  animation: music-spinner 5s linear 0s infinite forwards;
 }
 
-.pause {
-  width: 14px;
-  height: 10px;
-  border-style: double;
-  border-width: 0px 0px 0px 11px;
-  border-color: white;
-}
-
-@keyframes rotateAlbumArt {
-  0% {
-    transform: rotateZ(0);
-    transform-origin:50% 50%;
-  }
-  100% {
-    transform: rotateZ(360deg);
-    transform-origin:50% 50%;
-  }
+.ScrollToTopButton {
+  position: fixed;
+  right: 5%;
+  bottom: 3%;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.5s;
+  font-size: 1.5rem;
+  border-radius: 50% 50%;
+  width: 2.5rem;
+  display: block;
+  height: 2.5rem;
+  line-height: 2.5rem;
+  background: rgba(10, 10, 10, 0.1);
+  z-index: 999;
+  text-align: center;
 }

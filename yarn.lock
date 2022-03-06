@@ -1506,6 +1506,11 @@
   "resolved" "https://registry.npmmirror.com/caniuse-lite/-/caniuse-lite-1.0.30001312.tgz"
   "version" "1.0.30001312"
 
+"ccount@^2.0.0":
+  "integrity" "sha512-eyrF0jiFpY+3drT6383f1qhkbGsLSifNAjA61IUjZjmLCWjItY6LB9ft9YhoDgwfmclB2zhu51Lc7+95b8NRAg=="
+  "resolved" "https://registry.npmmirror.com/ccount/-/ccount-2.0.1.tgz"
+  "version" "2.0.1"
+
 "chalk@^2.0.0":
   "integrity" "sha512-Mti+f9lpJNcwF4tWV8/OrTTtF1gZi+f8FqlyAdouralcFWFQWF2+NgCHShjkCb+IFBLq9buZwE1xckQU4peSuQ=="
   "resolved" "https://registry.npmmirror.com/chalk/-/chalk-2.4.2.tgz"
@@ -1633,7 +1638,14 @@
     "path-type" "^4.0.0"
     "yaml" "^1.10.0"
 
-"cross-spawn@^7.0.2":
+"cross-env@^7.0.3":
+  "integrity" "sha512-+/HKd6EgcQCJGh2PSjZuUitQBQynKor4wrFbRg4DtAgS1aWO+gU52xpH7M9ScGgXSYmAVS9bIJ8EzuaGw0oNAw=="
+  "resolved" "https://registry.npmmirror.com/cross-env/-/cross-env-7.0.3.tgz"
+  "version" "7.0.3"
+  dependencies:
+    "cross-spawn" "^7.0.1"
+
+"cross-spawn@^7.0.1", "cross-spawn@^7.0.2":
   "integrity" "sha512-iRDPJKUPVEND7dHPO8rkbOnPpyDygcDFtWjpeWNCgy8WP2rXcxXL8TskReQl6OrB2G7+UJrags1q15Fudc7G6w=="
   "resolved" "https://registry.npmmirror.com/cross-spawn/-/cross-spawn-7.0.3.tgz"
   "version" "7.0.3"
@@ -1837,6 +1849,11 @@
   "integrity" "sha512-TtpcNJ3XAzx3Gq8sWRzJaVajRs0uVxA2YAkdb1jm2YkPz4G6egUFAyA3n5vtEIZefPk5Wa4UXbKuS5fKkJWdgA=="
   "resolved" "https://registry.npmmirror.com/escape-string-regexp/-/escape-string-regexp-4.0.0.tgz"
   "version" "4.0.0"
+
+"escape-string-regexp@^5.0.0":
+  "integrity" "sha512-/veY75JbMK4j1yjvuUxuVsiS/hr/4iHs9FTT6cgTexxdE0Ly/glccBAkloH/DofkjRbZU3bnoj38mOmhkZ0lHw=="
+  "resolved" "https://registry.npmmirror.com/escape-string-regexp/-/escape-string-regexp-5.0.0.tgz"
+  "version" "5.0.0"
 
 "eslint-config-next@12.1.0":
   "integrity" "sha512-tBhuUgoDITcdcM7xFvensi9I5WTI4dnvH4ETGRg1U8ZKpXrZsWQFdOKIDzR3RLP5HR3xXrLviaMM4c3zVoE/pA=="
@@ -2622,6 +2639,11 @@
   "resolved" "https://registry.npmmirror.com/lodash/-/lodash-4.17.21.tgz"
   "version" "4.17.21"
 
+"longest-streak@^3.0.0":
+  "integrity" "sha512-cHlYSUpL2s7Fb3394mYxwTYj8niTaNHUCLr0qdiCXQfSjfuA7CKofpX2uSwEfFDQ0EB7JcnMnm+GjbqqoinYYg=="
+  "resolved" "https://registry.npmmirror.com/longest-streak/-/longest-streak-3.0.1.tgz"
+  "version" "3.0.1"
+
 "loose-envify@^1.1.0", "loose-envify@^1.4.0":
   "integrity" "sha512-lyuxPGr/Wfhrlem2CL/UcnUc1zcqKAImBDzukY7Y5F/yQiNdko6+fRLevlw1HgMySw7f611UIY408EtxRSoK3Q=="
   "resolved" "https://registry.npmmirror.com/loose-envify/-/loose-envify-1.4.0.tgz"
@@ -2644,6 +2666,11 @@
   dependencies:
     "yallist" "^4.0.0"
 
+"markdown-table@^3.0.0":
+  "integrity" "sha512-y8j3a5/DkJCmS5x4dMCQL+OR0+2EAq3DOtio1COSHsmW2BGXnNCK3v12hJt1LrUz5iZH5g0LmuYOjDdI+czghA=="
+  "resolved" "https://registry.npmmirror.com/markdown-table/-/markdown-table-3.0.2.tgz"
+  "version" "3.0.2"
+
 "mdast-util-definitions@^5.0.0":
   "integrity" "sha512-5hcR7FL2EuZ4q6lLMUK5w4lHT2H3vqL9quPvYZ/Ku5iifrirfMHiGdhxdXMUbUkDmz5I+TYMd7nbaxUhbQkfpQ=="
   "resolved" "https://registry.npmmirror.com/mdast-util-definitions/-/mdast-util-definitions-5.1.0.tgz"
@@ -2652,6 +2679,15 @@
     "@types/mdast" "^3.0.0"
     "@types/unist" "^2.0.0"
     "unist-util-visit" "^3.0.0"
+
+"mdast-util-find-and-replace@^2.0.0":
+  "integrity" "sha512-1w1jbqAd13oU78QPBf5223+xB+37ecNtQ1JElq2feWols5oEYAl+SgNDnOZipe7NfLemoEt362yUS15/wip4mw=="
+  "resolved" "https://registry.npmmirror.com/mdast-util-find-and-replace/-/mdast-util-find-and-replace-2.1.0.tgz"
+  "version" "2.1.0"
+  dependencies:
+    "escape-string-regexp" "^5.0.0"
+    "unist-util-is" "^5.0.0"
+    "unist-util-visit-parents" "^4.0.0"
 
 "mdast-util-from-markdown@^1.0.0":
   "integrity" "sha512-iZJyyvKD1+K7QX1b5jXdE7Sc5dtoTry1vzV28UZZe8Z1xVnB/czKntJ7ZAkG0tANqRnBF6p3p7GpU1y19DTf2Q=="
@@ -2671,6 +2707,60 @@
     "unist-util-stringify-position" "^3.0.0"
     "uvu" "^0.5.0"
 
+"mdast-util-gfm-autolink-literal@^1.0.0":
+  "integrity" "sha512-FzopkOd4xTTBeGXhXSBU0OCDDh5lUj2rd+HQqG92Ld+jL4lpUfgX2AT2OHAVP9aEeDKp7G92fuooSZcYJA3cRg=="
+  "resolved" "https://registry.npmmirror.com/mdast-util-gfm-autolink-literal/-/mdast-util-gfm-autolink-literal-1.0.2.tgz"
+  "version" "1.0.2"
+  dependencies:
+    "@types/mdast" "^3.0.0"
+    "ccount" "^2.0.0"
+    "mdast-util-find-and-replace" "^2.0.0"
+    "micromark-util-character" "^1.0.0"
+
+"mdast-util-gfm-footnote@^1.0.0":
+  "integrity" "sha512-p+PrYlkw9DeCRkTVw1duWqPRHX6Ywh2BNKJQcZbCwAuP/59B0Lk9kakuAd7KbQprVO4GzdW8eS5++A9PUSqIyw=="
+  "resolved" "https://registry.npmmirror.com/mdast-util-gfm-footnote/-/mdast-util-gfm-footnote-1.0.1.tgz"
+  "version" "1.0.1"
+  dependencies:
+    "@types/mdast" "^3.0.0"
+    "mdast-util-to-markdown" "^1.3.0"
+    "micromark-util-normalize-identifier" "^1.0.0"
+
+"mdast-util-gfm-strikethrough@^1.0.0":
+  "integrity" "sha512-zKJbEPe+JP6EUv0mZ0tQUyLQOC+FADt0bARldONot/nefuISkaZFlmVK4tU6JgfyZGrky02m/I6PmehgAgZgqg=="
+  "resolved" "https://registry.npmmirror.com/mdast-util-gfm-strikethrough/-/mdast-util-gfm-strikethrough-1.0.1.tgz"
+  "version" "1.0.1"
+  dependencies:
+    "@types/mdast" "^3.0.0"
+    "mdast-util-to-markdown" "^1.3.0"
+
+"mdast-util-gfm-table@^1.0.0":
+  "integrity" "sha512-B/tgpJjND1qIZM2WZst+NYnb0notPE6m0J+YOe3NOHXyEmvK38ytxaOsgz4BvrRPQQcNbRrTzSHMPnBkj1fCjg=="
+  "resolved" "https://registry.npmmirror.com/mdast-util-gfm-table/-/mdast-util-gfm-table-1.0.3.tgz"
+  "version" "1.0.3"
+  dependencies:
+    "markdown-table" "^3.0.0"
+    "mdast-util-to-markdown" "^1.3.0"
+
+"mdast-util-gfm-task-list-item@^1.0.0":
+  "integrity" "sha512-KZ4KLmPdABXOsfnM6JHUIjxEvcx2ulk656Z/4Balw071/5qgnhz+H1uGtf2zIGnrnvDC8xR4Fj9uKbjAFGNIeA=="
+  "resolved" "https://registry.npmmirror.com/mdast-util-gfm-task-list-item/-/mdast-util-gfm-task-list-item-1.0.1.tgz"
+  "version" "1.0.1"
+  dependencies:
+    "@types/mdast" "^3.0.0"
+    "mdast-util-to-markdown" "^1.3.0"
+
+"mdast-util-gfm@^2.0.0":
+  "integrity" "sha512-wMwejlTN3EQADPFuvxe8lmGsay3+f6gSJKdAHR6KBJzpcxvsjJSILB9K6u6G7eQLC7iOTyVIHYGui9uBc9r1Tg=="
+  "resolved" "https://registry.npmmirror.com/mdast-util-gfm/-/mdast-util-gfm-2.0.0.tgz"
+  "version" "2.0.0"
+  dependencies:
+    "mdast-util-gfm-autolink-literal" "^1.0.0"
+    "mdast-util-gfm-footnote" "^1.0.0"
+    "mdast-util-gfm-strikethrough" "^1.0.0"
+    "mdast-util-gfm-table" "^1.0.0"
+    "mdast-util-gfm-task-list-item" "^1.0.0"
+
 "mdast-util-to-hast@^12.1.0":
   "integrity" "sha512-qE09zD6ylVP14jV4mjLIhDBOrpFdShHZcEsYvvKGABlr9mGbV7mTlRWdoFxL/EYSTNDiC9GZXy7y8Shgb9Dtzw=="
   "resolved" "https://registry.npmmirror.com/mdast-util-to-hast/-/mdast-util-to-hast-12.1.1.tgz"
@@ -2687,7 +2777,20 @@
     "unist-util-position" "^4.0.0"
     "unist-util-visit" "^4.0.0"
 
-"mdast-util-to-string@^3.1.0":
+"mdast-util-to-markdown@^1.3.0":
+  "integrity" "sha512-6tUSs4r+KK4JGTTiQ7FfHmVOaDrLQJPmpjD6wPMlHGUVXoG9Vjc3jIeP+uyBWRf8clwB2blM+W7+KrlMYQnftA=="
+  "resolved" "https://registry.npmmirror.com/mdast-util-to-markdown/-/mdast-util-to-markdown-1.3.0.tgz"
+  "version" "1.3.0"
+  dependencies:
+    "@types/mdast" "^3.0.0"
+    "@types/unist" "^2.0.0"
+    "longest-streak" "^3.0.0"
+    "mdast-util-to-string" "^3.0.0"
+    "micromark-util-decode-string" "^1.0.0"
+    "unist-util-visit" "^4.0.0"
+    "zwitch" "^2.0.0"
+
+"mdast-util-to-string@^3.0.0", "mdast-util-to-string@^3.1.0":
   "integrity" "sha512-n4Vypz/DZgwo0iMHLQL49dJzlp7YtAJP+N07MZHpjPf/5XJuHUWstviF4Mn2jEiR/GNmtnRRqnwsXExk3igfFA=="
   "resolved" "https://registry.npmmirror.com/mdast-util-to-string/-/mdast-util-to-string-3.1.0.tgz"
   "version" "3.1.0"
@@ -2702,7 +2805,7 @@
   "resolved" "https://registry.npmmirror.com/merge2/-/merge2-1.4.1.tgz"
   "version" "1.4.1"
 
-"micromark-core-commonmark@^1.0.1":
+"micromark-core-commonmark@^1.0.0", "micromark-core-commonmark@^1.0.1":
   "integrity" "sha512-K+PkJTxqjFfSNkfAhp4GB+cZPfQd6dxtTXnf+RjZOV7T4EEXnvgzOcnp+eSTmpGk9d1S9sL6/lqrgSNn/s0HZA=="
   "resolved" "https://registry.npmmirror.com/micromark-core-commonmark/-/micromark-core-commonmark-1.0.6.tgz"
   "version" "1.0.6"
@@ -2723,6 +2826,85 @@
     "micromark-util-symbol" "^1.0.0"
     "micromark-util-types" "^1.0.1"
     "uvu" "^0.5.0"
+
+"micromark-extension-gfm-autolink-literal@^1.0.0":
+  "integrity" "sha512-i3dmvU0htawfWED8aHMMAzAVp/F0Z+0bPh3YrbTPPL1v4YAlCZpy5rBO5p0LPYiZo0zFVkoYh7vDU7yQSiCMjg=="
+  "resolved" "https://registry.npmmirror.com/micromark-extension-gfm-autolink-literal/-/micromark-extension-gfm-autolink-literal-1.0.3.tgz"
+  "version" "1.0.3"
+  dependencies:
+    "micromark-util-character" "^1.0.0"
+    "micromark-util-sanitize-uri" "^1.0.0"
+    "micromark-util-symbol" "^1.0.0"
+    "micromark-util-types" "^1.0.0"
+    "uvu" "^0.5.0"
+
+"micromark-extension-gfm-footnote@^1.0.0":
+  "integrity" "sha512-bn62pC5y39rIo2g1RqZk1NhF7T7cJLuJlbevunQz41U0iPVCdVOFASe5/L1kke+DFKSgfCRhv24+o42cZ1+ADw=="
+  "resolved" "https://registry.npmmirror.com/micromark-extension-gfm-footnote/-/micromark-extension-gfm-footnote-1.0.3.tgz"
+  "version" "1.0.3"
+  dependencies:
+    "micromark-core-commonmark" "^1.0.0"
+    "micromark-factory-space" "^1.0.0"
+    "micromark-util-character" "^1.0.0"
+    "micromark-util-normalize-identifier" "^1.0.0"
+    "micromark-util-sanitize-uri" "^1.0.0"
+    "micromark-util-symbol" "^1.0.0"
+    "uvu" "^0.5.0"
+
+"micromark-extension-gfm-strikethrough@^1.0.0":
+  "integrity" "sha512-/vjHU/lalmjZCT5xt7CcHVJGq8sYRm80z24qAKXzaHzem/xsDYb2yLL+NNVbYvmpLx3O7SYPuGL5pzusL9CLIQ=="
+  "resolved" "https://registry.npmmirror.com/micromark-extension-gfm-strikethrough/-/micromark-extension-gfm-strikethrough-1.0.4.tgz"
+  "version" "1.0.4"
+  dependencies:
+    "micromark-util-chunked" "^1.0.0"
+    "micromark-util-classify-character" "^1.0.0"
+    "micromark-util-resolve-all" "^1.0.0"
+    "micromark-util-symbol" "^1.0.0"
+    "micromark-util-types" "^1.0.0"
+    "uvu" "^0.5.0"
+
+"micromark-extension-gfm-table@^1.0.0":
+  "integrity" "sha512-xAZ8J1X9W9K3JTJTUL7G6wSKhp2ZYHrFk5qJgY/4B33scJzE2kpfRL6oiw/veJTbt7jiM/1rngLlOKPWr1G+vg=="
+  "resolved" "https://registry.npmmirror.com/micromark-extension-gfm-table/-/micromark-extension-gfm-table-1.0.5.tgz"
+  "version" "1.0.5"
+  dependencies:
+    "micromark-factory-space" "^1.0.0"
+    "micromark-util-character" "^1.0.0"
+    "micromark-util-symbol" "^1.0.0"
+    "micromark-util-types" "^1.0.0"
+    "uvu" "^0.5.0"
+
+"micromark-extension-gfm-tagfilter@^1.0.0":
+  "integrity" "sha512-Ty6psLAcAjboRa/UKUbbUcwjVAv5plxmpUTy2XC/3nJFL37eHej8jrHrRzkqcpipJliuBH30DTs7+3wqNcQUVA=="
+  "resolved" "https://registry.npmmirror.com/micromark-extension-gfm-tagfilter/-/micromark-extension-gfm-tagfilter-1.0.1.tgz"
+  "version" "1.0.1"
+  dependencies:
+    "micromark-util-types" "^1.0.0"
+
+"micromark-extension-gfm-task-list-item@^1.0.0":
+  "integrity" "sha512-PpysK2S1Q/5VXi72IIapbi/jliaiOFzv7THH4amwXeYXLq3l1uo8/2Be0Ac1rEwK20MQEsGH2ltAZLNY2KI/0Q=="
+  "resolved" "https://registry.npmmirror.com/micromark-extension-gfm-task-list-item/-/micromark-extension-gfm-task-list-item-1.0.3.tgz"
+  "version" "1.0.3"
+  dependencies:
+    "micromark-factory-space" "^1.0.0"
+    "micromark-util-character" "^1.0.0"
+    "micromark-util-symbol" "^1.0.0"
+    "micromark-util-types" "^1.0.0"
+    "uvu" "^0.5.0"
+
+"micromark-extension-gfm@^2.0.0":
+  "integrity" "sha512-p2sGjajLa0iYiGQdT0oelahRYtMWvLjy8J9LOCxzIQsllMCGLbsLW+Nc+N4vi02jcRJvedVJ68cjelKIO6bpDA=="
+  "resolved" "https://registry.npmmirror.com/micromark-extension-gfm/-/micromark-extension-gfm-2.0.1.tgz"
+  "version" "2.0.1"
+  dependencies:
+    "micromark-extension-gfm-autolink-literal" "^1.0.0"
+    "micromark-extension-gfm-footnote" "^1.0.0"
+    "micromark-extension-gfm-strikethrough" "^1.0.0"
+    "micromark-extension-gfm-table" "^1.0.0"
+    "micromark-extension-gfm-tagfilter" "^1.0.0"
+    "micromark-extension-gfm-task-list-item" "^1.0.0"
+    "micromark-util-combine-extensions" "^1.0.0"
+    "micromark-util-types" "^1.0.0"
 
 "micromark-factory-destination@^1.0.0":
   "integrity" "sha512-eUBA7Rs1/xtTVun9TmV3gjfPz2wEwgK5R5xcbIM5ZYAtvGF6JkyaDsj0agx8urXnO31tEO6Ug83iVH3tdedLnw=="
@@ -3386,6 +3568,16 @@
   dependencies:
     "jsesc" "~0.5.0"
 
+"remark-gfm@^3.0.1":
+  "integrity" "sha512-lEFDoi2PICJyNrACFOfDD3JlLkuSbOa5Wd8EPt06HUdptv8Gn0bxYTdbU/XXQ3swAPkEaGxxPN9cbnMHvVu1Ig=="
+  "resolved" "https://registry.npmmirror.com/remark-gfm/-/remark-gfm-3.0.1.tgz"
+  "version" "3.0.1"
+  dependencies:
+    "@types/mdast" "^3.0.0"
+    "mdast-util-gfm" "^2.0.0"
+    "micromark-extension-gfm" "^2.0.0"
+    "unified" "^10.0.0"
+
 "remark-parse@^10.0.0":
   "integrity" "sha512-1fUyHr2jLsVOkhbvPRBJ5zTKZZyD6yZzYaWCS6BPBdQ8vEMBCH+9zNCDA6tET/zHCi/jLqjCWtlJZUPk+DbnFw=="
   "resolved" "https://registry.npmmirror.com/remark-parse/-/remark-parse-10.0.1.tgz"
@@ -3936,3 +4128,8 @@
   "integrity" "sha512-r3vXyErRCYJ7wg28yvBY5VSoAF8ZvlcW9/BwUzEtUsjvX/DKs24dIkuwjtuprwJJHsbyUbLApepYTR1BN4uHrg=="
   "resolved" "https://registry.npmmirror.com/yaml/-/yaml-1.10.2.tgz"
   "version" "1.10.2"
+
+"zwitch@^2.0.0":
+  "integrity" "sha512-JZxotl7SxAJH0j7dN4pxsTV6ZLXoLdGME+PsjkL/DaBrVryK9kTGq06GfKrwcSOqypP+fdXGoCHE36b99fWVoA=="
+  "resolved" "https://registry.npmmirror.com/zwitch/-/zwitch-2.0.2.tgz"
+  "version" "2.0.2"

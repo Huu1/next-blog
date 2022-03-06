@@ -11,7 +11,7 @@ const components: any = {
   github: Github,
 };
 
-const  SocialIcon = function ({ kind, href, size = 8 }: any) {
+const  SocialIcon = function ({ kind, href, size = 26 }: any) {
   if (
     !href ||
     (kind === "mail" &&
@@ -28,7 +28,7 @@ const  SocialIcon = function ({ kind, href, size = 8 }: any) {
       href={href}
     >
       <span className="sr-only">{kind}</span>
-         <Image src={SocialSvg}   alt='图片丢了' width={26} height={26} />
+         <Image src={SocialSvg}   alt='图片丢了' width={size} height={size} />
     </a>
   );
 }

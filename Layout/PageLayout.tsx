@@ -1,6 +1,8 @@
 import { useEffect } from "react";
-import Header from "./Header";
-import Footer from "./Footer";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
+import ScrollTop from "../components/ScrollTop";
+import Music from "../components/Music/MusicInit";
 
 export default function Layout({ children }: any) {
   useEffect(() => {
@@ -8,7 +10,7 @@ export default function Layout({ children }: any) {
   }, []);
   return (
     <div
-      className="App px-5 pt-10  flex flex-col"
+      className="App px-5 pt-10 flex flex-col"
       style={{
         minHeight: "100vh",
         margin: "0 auto",
@@ -18,6 +20,11 @@ export default function Layout({ children }: any) {
     >
       <Header />
       <main>{children}</main>
+      <Music />
+      <ScrollTop
+        speed={250}
+        target={0}
+      />
       <Footer />
     </div>
   );

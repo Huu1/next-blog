@@ -9,10 +9,11 @@ const { author,  occupation, email ,github ,selfIntroduction ,TStack} = siteMeta
 
 export default function About() {
   const [isDark] = useContext(ThemeContext);
+  
   return (
     <>
       <div className="divide-y">
-        <div className="space-y-2 pt-6 pb-8 md:space-y-5">
+        <div className="space-y-2 pt-10 pb-2 md:space-y-5">
           <h1 className="text-2xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 ">
             关于我
           </h1>

@@ -7,6 +7,7 @@ import { ThemeContext } from "../../context/themeContext";
 import ReactMarkdown from "react-markdown";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { atomDark as codeStyle } from "react-syntax-highlighter/dist/cjs/styles/prism";
+import remarkGfm from 'remark-gfm'
 
 // 此函数在构建时被调用
 export async function getStaticPaths() {
@@ -34,12 +35,12 @@ export async function getStaticProps({ params }: any) {
   const post = await res.json();
 
   // 通过 props 参数向页面传递博文的数据
-  return { props: { post: post.data } };
+  return { props: { posts: post.data } };
 }
 
 enum LINK_TYPE {
-  TAG = "tagId",
-  LABEL = "labelId",
+  TAG = "tag",
+  LABEL = "label",
 }
 
 const TagLink = ({
@@ -51,11 +52,11 @@ const TagLink = ({
   value: string;
   type: LINK_TYPE;
 }) => {
-  const url = `/?${type}=${value}`;
+  const url = `/${type}/${value}`;
   return (
     <Link href={url}>
       <a className="text-base	font-medium text-pink-800 dark:text-pink-300 underline">
-        {type !== LINK_TYPE.TAG ? "#" : ""}
+        {type === LINK_TYPE.TAG ? "#" : ""}
         {name}
       </a>
     </Link>
@@ -79,8 +80,13 @@ const TagList = ({ data, type }: { data: any[]; type: LINK_TYPE }) => {
   );
 };
 
-const Post = ({ post }: any) => {
-  const [isDark] = useContext(ThemeContext);
+const Post = ({ posts:post }: any) => {
+  const [isDark,,setRef] = useContext(ThemeContext);
+  const dom=useRef<any>();
+  
+  useEffect(()=>{
+    setRef(dom)
+  },[setRef])
 
   return (
     <>
@@ -96,7 +102,7 @@ const Post = ({ post }: any) => {
             <TagLink
               value={post?.tag.tagId}
               name={post?.tag.title}
-              type={LINK_TYPE.TAG}
+              type={LINK_TYPE.LABEL}
             />
           </span>
         ) : (
@@ -106,35 +112,39 @@ const Post = ({ post }: any) => {
 
       <div className="mt-10">
         {/* <div className={`${isDark? 'markdown-body-dark':'markdown-body'} `} ref={dom}></div> */}
-        <ReactMarkdown
-          className={`${isDark? 'markdown-body-dark':'markdown-body'} `}
-          components={{
-            code({ node, inline, className, children, ...props }) {
-              const match = /language-(\w+)/.exec(className || "js");
-              return !inline && match ? (
-                <SyntaxHighlighter
-                  style={codeStyle}
-                  language={match[1]}
-                  PreTag="div"
-                  {...props}
-                >
-                  {String(children).replace(/\n$/, "")}
-                </SyntaxHighlighter>
-              ) : (
-                <code className={className} {...props}>
-                  {children}
-                </code>
-              );
-            },
-          }}
-        >
-          {post?.content?.content}
-        </ReactMarkdown>
-        ,
+        <div className={`${isDark? 'markdown-body-dark':'markdown-body'} `} ref={dom}>
+          <ReactMarkdown
+            remarkPlugins={[[remarkGfm, {singleTilde: false}]]}
+            
+            components={{
+              code({ node, inline, className, children, ...props }) {
+                const match = /language-(\w+)/.exec(className || "js");
+                return !inline && match ? (
+                  <SyntaxHighlighter
+                    style={codeStyle}
+                    language={match[1]}
+                    PreTag="div"
+                    {...props}
+                  >
+                    {String(children).replace(/\n$/, "")}
+                  </SyntaxHighlighter>
+                ) : (
+                  <code className={className} {...props}>
+                    {children}
+                  </code>
+                );
+              },
+            }}
+          >
+            {post?.content?.content}
+          </ReactMarkdown>
+        </div>
+        
+        
         {post?.label && post?.label.length > 0 && (
           <div className="text-base mt-10 dark:text-gray-400">
             标签：
-            <TagList data={post?.label || []} type={LINK_TYPE.LABEL} />
+            <TagList data={post?.label || []} type={LINK_TYPE.TAG} />
           </div>
         )}
       </div>
