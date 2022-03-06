@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import ScrollTop from "../components/ScrollTop";
 import Music from "../components/Music/MusicInit";
+import ScrollTop from "../components/ScrollTop";
 
 export default function Layout({ children }: any) {
   useEffect(() => {
