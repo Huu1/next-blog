@@ -1,29 +1,13 @@
 import React, { useCallback, useEffect, useState } from "react";
 
 const THEME_KEY = "theme";
-
 export const useToggle = (initialState: boolean = false) => {
   // Initialize the state
   const [state, setState] = useState<boolean>(initialState);
-
-  // Define and memorize toggler function in case we pass down the comopnent,
-  // This function change the boolean value to it's opposite value
   const toggle: any = useCallback(() => setState((state) => !state), []);
 
   return [state, toggle];
 };
-
-// const setItem = (key: string, value: any) => {
-//   if (typeof window !== "undefined") {
-//     localStorage.setItem(key, value);
-//   }
-// };
-// const getItem = (key: string): any => {
-//   if (typeof window !== "undefined") {
-//     return localStorage.getItem(key);
-//   }
-// };
-
 const initToggle = () => {
   if (typeof window !== "undefined") {
     return window.matchMedia("(prefers-color-scheme: dark)").matches;

@@ -14,6 +14,7 @@ interface IATag {
 }
 
 export interface IArticle {
+  time:number;
   tag: IATag;
   user: IArticleUser;
   content: IArticleContent;

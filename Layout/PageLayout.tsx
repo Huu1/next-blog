@@ -1,31 +1,22 @@
 import { useEffect } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import Music from "../components/Music/MusicInit";
 import ScrollTop from "../components/ScrollTop";
 
 export default function Layout({ children }: any) {
-  useEffect(() => {
-    document.querySelector("body")?.classList.add("dark:bg-gray-800");
-  }, []);
   return (
-    <div
-      className="App px-5 pt-10 flex flex-col"
-      style={{
-        minHeight: "100vh",
-        margin: "0 auto",
-        maxWidth: "980px",
-        overflowX: "hidden",
-      }}
-    >
-      <Header />
-      <main>{children}</main>
-      <Music />
-      <ScrollTop
+    <div className="App dark:bg-dark-bg bg-light-bg min-h-screen">
+      <div
+        className=" px-5 pt-5 flex flex-col h-full mr-auto ml-auto mt-0 mb-0 max-w-4xl"
+      >
+        <Header />
+        <main>{children}</main>
+        {/* <ScrollTop
         speed={250}
         target={0}
-      />
-      <Footer />
+      /> */}
+        <Footer />
+      </div>
     </div>
   );
 }

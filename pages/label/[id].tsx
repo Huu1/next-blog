@@ -28,7 +28,7 @@ export async function getStaticProps({ params }: any) {
   const posts = await res.json();
 
   // 通过 props 参数向页面传递博文的数据
-  return { props: { posts: posts?.data || null } };
+  return { props: { posts: posts?.data || null } ,revalidate: 10};
 }
 
 export default function Labels(

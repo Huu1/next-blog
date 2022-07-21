@@ -7,7 +7,7 @@ export async function getStaticProps() {
   const res = await fetch(`${API}/classic/tagCount`);
   const tags = await res.json();
 
-  return { props: { data: tags?.data || [] } };
+  return { props: { data: tags?.data || [] } ,revalidate: 10};
 }
 
 export default function label({ data }: any) {

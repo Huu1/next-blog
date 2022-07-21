@@ -1,6 +1,5 @@
 import Link from "./Link";
 import React, { useContext } from "react";
-import Music from "./Music/MusicInit";
 import MobileNav from "./MobileNav";
 import { headerNavLinks } from "../config";
 import ThemeSwitch from "./ThemeSwitch";
@@ -33,7 +32,6 @@ function Header() {
         <ThemeSwitch />
         <MobileNav />
       </div>
-      {/* <Music /> */}
     </div>
   );
 }

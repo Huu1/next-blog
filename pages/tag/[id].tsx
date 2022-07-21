@@ -26,7 +26,7 @@ export async function getStaticProps({ params }: any) {
   const posts = await res.json();
 
   // 通过 props 参数向页面传递博文的数据
-  return { props: { posts: posts.data } };
+  return { props: { posts: posts.data } ,revalidate: 10};
 }
 
 export default function Tags({posts}: { posts:{title: string; article: IArticle[]} }) {
