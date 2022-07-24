@@ -1,3 +1,5 @@
+import React from "react";
+
 export interface IArticleContent {
   content: string;
   id: string;
@@ -11,6 +13,17 @@ export interface IArticleUser {
 interface IATag {
   tagId: string;
   title: string;
+}
+
+export type Series ={
+  tag_color?: string
+  tag_content?: string
+  tag_createTime?: number
+  tag_status?:string
+  id?: string
+  tag_title?: string
+  tag_background?: string
+  count?:string
 }
 
 export interface IArticle {

@@ -9,6 +9,6 @@ export const siteMetadata = {
   github: "https://github.com/Huu1",
   selfIntroduction:`
   ### **你好啊**!
-  ​   欢迎来到我的地盘🐎，下班闲时用\`nextJs react\`和 \`nestJs\` 写了这个博客，主要想记录一些工作和学习上遇到的知识点，有什么问题可以与联系哦！🤪
+  ​   欢迎来到我的地盘🐎，有什么问题可以与联系哦！🤪
   `
 };

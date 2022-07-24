@@ -1,13 +1,9 @@
-import Link from "next/link";
-import React, { useContext, useEffect, useRef } from "react";
-import { ArticleHeader } from "../../components/Article";
-import UserInfo from "../../components/UserInfo";
+import React from "react";
 import { API } from "../../config";
-import { ThemeContext } from "../../context/themeContext";
 import ReactMarkdown from "react-markdown";
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { atomDark as codeStyle } from "react-syntax-highlighter/dist/cjs/styles/prism";
-import remarkGfm from 'remark-gfm'
+import remarkGfm from "remark-gfm";
+import Tag from "../../components/Tag";
+import { withRouter } from "next/router";
 
 // 此函数在构建时被调用
 export async function getStaticPaths() {
@@ -35,142 +31,138 @@ export async function getStaticProps({ params }: any) {
   const post = await res.json();
 
   // 通过 props 参数向页面传递博文的数据
-  return { props: { posts: post.data } ,revalidate: 10};
+  return { props: { posts: post.data }, revalidate: 10 };
 }
 
-enum LINK_TYPE {
-  TAG = "tag",
-  LABEL = "label",
-}
-
-const TagLink = ({
-  name,
-  value,
-  type,
-}: {
-  name: string;
-  value: string;
-  type: LINK_TYPE;
-}) => {
-  const url = `/${type}/${value}`;
+const Post = ({ posts: post, router }: any) => {
   return (
-    <Link href={url}>
-      <a className="text-base	font-medium text-pink-800 dark:text-pink-300 underline">
-        {type === LINK_TYPE.TAG ? "#" : ""}
-        {name}
-      </a>
-    </Link>
-  );
-};
+    <div className="mt-10 mb-14">
+      <article className="prose prose-slate    max-w-none overflow-hidden dark:prose-invert md:prose-lg lg:prose-xl">
+        <ReactMarkdown remarkPlugins={[[remarkGfm, { singleTilde: false }]]}>
+          {post?.content?.content}
+        </ReactMarkdown>
+      </article>
 
-const TagList = ({ data, type }: { data: any[]; type: LINK_TYPE }) => {
-  return (
-    <>
-      {data
-        .filter((i: any) => i.status === "on")
-        .map(({ labelId, title }, index: number, array) => {
-          return (
-            <React.Fragment key={labelId}>
-              <TagLink key={labelId} value={labelId} name={title} type={type} />
-              <div className="mr-2 inline-block"></div>
-            </React.Fragment>
-          );
-        })}
-    </>
-  );
-};
-
-const Post = ({ posts:post }: any) => {
-  const [isDark,,setRef] = useContext(ThemeContext);
-  const dom=useRef<any>();
-  
-  useEffect(()=>{
-    setRef(dom)
-  },[setRef])
-
-  return (
-    <>
-      <ArticleHeader
-        articleId={post?.articleId}
-        title={post?.title}
-        readTime={post?.readTime}
-        time={post?.publishTime}
-      >
-        {post?.tag ? (
-          <span className="text-sm text-gray-500 font-mono dark:text-gray-300 mt-1.5">
-            <span>&nbsp;• &nbsp;</span>
-            <TagLink
-              value={post?.tag.tagId}
-              name={post?.tag.title}
-              type={LINK_TYPE.LABEL}
-            />
-          </span>
-        ) : (
-          <></>
-        )}
-      </ArticleHeader>
-
-      <div className="mt-10">
-        {/* <div className={`${isDark? 'markdown-body-dark':'markdown-body'} `} ref={dom}></div> */}
-        <div className={`${isDark? 'markdown-body-dark':'markdown-body'} `} ref={dom}>
-          <ReactMarkdown
-            remarkPlugins={[[remarkGfm, {singleTilde: false}]]}
-            
-            components={{
-              code({ node, inline, className, children, ...props }) {
-                const match = /language-(\w+)/.exec(className || "js");
-                return !inline && match ? (
-                  <SyntaxHighlighter
-                    style={codeStyle}
-                    language={match[1]}
-                    PreTag="div"
-                    {...props}
-                  >
-                    {String(children).replace(/\n$/, "")}
-                  </SyntaxHighlighter>
-                ) : (
-                  <code className={className} {...props}>
-                    {children}
-                  </code>
-                );
-              },
-            }}
-          >
-            {post?.content?.content}
-          </ReactMarkdown>
-        </div>
-        
-        
-        {post?.label && post?.label.length > 0 && (
-          <div className="text-base mt-10 dark:text-gray-400">
-            标签：
-            <TagList data={post?.label || []} type={LINK_TYPE.TAG} />
-          </div>
-        )}
+      <div className="flex items-center mt-14 text-light-text dark:text-dark-text">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          className=" "
+        >
+          <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
+          <line x1="7" y1="7" x2="7" y2="7"></line>
+        </svg>
+        <span className=" inline-block ml-1">Tags</span>
       </div>
-      <div className="my-18 mt-12">
-        <UserInfo />
+      <div className="text-base mt-4 flex dark:text-gray-400">
+        {post?.label
+          ?.filter((i: any) => i.status === "on")
+          .map(({ labelId, title }: any) => {
+            return (
+              <Tag className="mr-3" key={labelId} url={`/tags/${title}`}>
+                {title}
+              </Tag>
+            );
+          })}
       </div>
-      <div className="my-8 mt-7 text-red-400 text-lg underline p-3 flex-wrap flex justify-between	">
-        <div className="mb-3">
-          {post?.previous && (
-            <Link href={`/post/${post?.previous.articleId}`} passHref>
-              <span className="text-pink-800 dark:text-pink-300 ">
-                👈{post?.previous.title}
-              </span>
-            </Link>
-          )}
-        </div>
-        {post?.next && (
-          <Link href={`/post/${post?.next.articleId}`} passHref>
-            <span className="text-pink-800 dark:text-pink-300 ">
-              {post?.next.title}👉👉
+      {post?.tag && (
+        <div className="my-8 mt-7  text-lg  p-3 flex-wrap flex justify-between	item-center">
+          {
+            <span
+              className={`${
+                post?.previous
+                  ? " cursor-pointer text-light-text dark:text-dark-text"
+                  : "cursor-not-allowed	text-light-disabled dark:text-dark-disabled"
+              }   inline-flex items-center`}
+              onClick={() => {
+                if (post?.previous) {
+                  router.push(`/post/${post?.previous.articleId}`);
+                }
+              }}
+            >
+              {
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="22"
+                  height="22"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="mr-2"
+                >
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <polyline points="12 8 8 12 12 16"></polyline>
+                  <line x1="16" y1="12" x2="8" y2="12"></line>
+                </svg>
+              }
+              {"Prev"}
             </span>
-          </Link>
-        )}
-      </div>
-    </>
+          }
+          {
+            <span className="flex text-light-text dark:text-dark-text items-center">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+              </svg>
+              <span className=" inline-block ml-2">{post?.tag?.title}</span>
+            </span>
+          }
+          {
+            <span
+              onClick={() => {
+                if (post?.next) {
+                  router.push(`/post/${post?.next.articleId}`);
+                }
+              }}
+              className={`${
+                post?.next
+                  ? " cursor-pointer text-light-text dark:text-dark-text"
+                  : "cursor-not-allowed	text-light-disabled dark:text-dark-disabled"
+              }   inline-flex items-center`}
+            >
+              {"Next"}
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="22"
+                height="22"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="ml-2"
+              >
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 16 16 12 12 8"></polyline>
+                <line x1="8" y1="12" x2="16" y2="12"></line>
+              </svg>
+            </span>
+          }
+        </div>
+      )}
+    </div>
   );
 };
 
-export default Post;
+export default withRouter(Post);

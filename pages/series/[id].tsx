@@ -1,7 +1,6 @@
-import React, { useState } from "react";
-import Article from "../../components/Article";
+import React from "react";
+import PostCard from "../../components/postCard";
 import { API } from "../../config";
-import SearchLayout from "../../Layout/SearchLayout";
 import { IArticle } from "../../types";
 
 export async function getStaticPaths() {
@@ -25,10 +24,11 @@ export async function getStaticProps({ params }: any) {
   // params 包含此片博文的 `id` 信息。
   // 如果路由是 /posts/1，那么 params.id 就是 1
   const res = await fetch(`${API}/classic/tag/${params.id}`);
+
   const posts = await res.json();
 
   // 通过 props 参数向页面传递博文的数据
-  return { props: { posts: posts?.data || null } ,revalidate: 10};
+  return { props: { posts: posts?.data || null }, revalidate: 10 };
 }
 
 export default function Labels(
@@ -36,5 +36,14 @@ export default function Labels(
     posts: { title: "null", article: [] },
   }
 ) {
-  return <SearchLayout posts={posts} />;
+  return (
+    <>
+      <div className="space-y-2 pt-4 pb-6 md:space-y-5">
+        <h1 className="text-2xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 ">
+          {posts.title}
+        </h1>
+      </div>
+      {<PostCard list={posts.article} />}
+    </>
+  );
 }

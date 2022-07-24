@@ -1,20 +1,21 @@
-import { useState } from 'react'
-import Link from './Link'
-import { headerNavLinks } from '../config'
+import { withRouter } from "next/router";
+import { useState } from "react";
+import { RouterList } from "./Header";
+import Link from "./Link";
 
-const MobileNav = () => {
-  const [navShow, setNavShow] = useState(false)
+const MobileNav = ({ router }: any) => {
+  const [navShow, setNavShow] = useState(false);
 
   const onToggleNav = () => {
     setNavShow((status) => {
       if (status) {
-        document.body.style.overflow = 'auto'
+        document.body.style.overflow = "auto";
       } else {
-        document.body.style.overflow = 'hidden'
+        document.body.style.overflow = "hidden";
       }
-      return !status
-    })
-  }
+      return !status;
+    });
+  };
 
   return (
     <div className="sm:hidden">
@@ -46,8 +47,9 @@ const MobileNav = () => {
         </svg>
       </button>
       <div
-        className={`fixed top-24 right-0 z-10 h-full w-full transform bg-gray-400 opacity-95 duration-300 ease-in-out dark:bg-gray-800 ${navShow ? 'translate-x-0' : 'translate-x-full'
-          }`}
+        className={`fixed top-24 right-0 z-10 h-full w-full transform bg-gray-400 opacity-95 duration-300 ease-in-out dark:bg-gray-800 ${
+          navShow ? "translate-x-0" : "translate-x-full"
+        }`}
       >
         <button
           type="button"
@@ -56,21 +58,26 @@ const MobileNav = () => {
           onClick={onToggleNav}
         ></button>
         <nav className="fixed mt-8 h-full">
-          {headerNavLinks.map((link) => (
+          {RouterList.map((link) => (
             <div key={link.title} className="px-12 py-4">
               <Link
                 href={link.href}
-                className="text-2xl font-bold tracking-widest text-gray-900 dark:text-gray-100"
+                className={`text-2xl tracking-widest text-gray-900 dark:text-gray-100 flex items-center ${
+                  router.pathname === link.href
+                    ? " text-light-active dark:text-dark-active"
+                    : "text-light-text dark:text-dark-text"
+                }`}
                 onClick={onToggleNav}
               >
-                {link.title}
+                {link.svg}
+                <span className=" inline-block ml-3">{link.title}</span>
               </Link>
             </div>
           ))}
         </nav>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default MobileNav
+export default withRouter(MobileNav);

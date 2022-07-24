@@ -1,15 +1,16 @@
-import SocialIcon from '../components/social-icons'
-import Image from '../components/Image'
-import { siteMetadata } from '../siteMetadata'
+import SocialIcon from "../components/social-icons";
+import Image from "../components/Image";
+import { siteMetadata } from "../siteMetadata";
 import avatar from "../public/img.jpg";
-import ReactMarkdown from 'react-markdown';
-import { ThemeContext } from '../context/themeContext';
-import { useContext } from 'react';
-const { author,  occupation, email ,github ,selfIntroduction ,TStack} = siteMetadata
+import ReactMarkdown from "react-markdown";
+import { ThemeContext } from "../context/themeContext";
+import { useContext } from "react";
+const { author, occupation, email, github, selfIntroduction, TStack } =
+  siteMetadata;
 
 export default function About() {
   const [isDark] = useContext(ThemeContext);
-  
+
   return (
     <>
       <div className="divide-y">
@@ -27,22 +28,30 @@ export default function About() {
               height="192px"
               className="h-48 w-48 rounded-full"
             /> */}
-            <h3 className="pt-4 pb-2 text-2xl font-bold leading-8 dark:text-gray-100 tracking-tight">{author}</h3>
-            <div className="text-gray-500 dark:text-gray-400">岗位：{occupation}</div>
-            <div className="text-gray-500 dark:text-gray-400">技术栈：{TStack}</div>
-            <div className="text-gray-500 dark:text-gray-400">邮箱：{email}</div>
+            <h3 className="pt-4 pb-2 text-2xl font-bold leading-8 dark:text-gray-100 tracking-tight">
+              {author}
+            </h3>
+            <div className="text-gray-500 dark:text-gray-400">
+              岗位：{occupation}
+            </div>
+            <div className="text-gray-500 dark:text-gray-400">
+              技术栈：{TStack}
+            </div>
+            <div className="text-gray-500 dark:text-gray-400">
+              邮箱：{email}
+            </div>
             <div className="flex space-x-3 pt-6 dark:text-gray-100">
               <SocialIcon kind="mail" href={`mailto:${email}`} />
               <SocialIcon kind="github" href={github} />
             </div>
           </div>
           <div className="prose max-w-none pt-8 pb-8 dark:prose-dark xl:col-span-2">
-            <ReactMarkdown className={`${isDark? 'markdown-body-dark':'markdown-body'} `}> 
-              {selfIntroduction}
-            </ReactMarkdown>
+            <article className="prose prose-slate    max-w-none overflow-hidden dark:prose-invert md:prose-lg lg:prose-xl">
+              <ReactMarkdown>{selfIntroduction}</ReactMarkdown>
+            </article>
           </div>
         </div>
       </div>
     </>
-  )
+  );
 }

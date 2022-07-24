@@ -11,7 +11,6 @@ export async function getStaticProps() {
 
 export default function Tag({ data }: any) {
   const prop = {
-    title: "标签",
     data,
     type: "tag",
   };
