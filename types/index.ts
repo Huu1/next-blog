@@ -16,13 +16,13 @@ interface IATag {
 }
 
 export type Series ={
-  tag_color?: string
-  tag_content?: string
-  tag_createTime?: number
-  tag_status?:string
-  id?: string
-  tag_title?: string
-  tag_background?: string
+  series_description?: string
+  series_createTime?: number
+  series_status?:string
+  series_id?: string
+  series_title?: string
+  series_name?: string
+  series_background?: string
   count?:string
 }
 
@@ -47,4 +47,7 @@ export interface IArticle {
   label: any[];
   next?: IArticle;
   previous?: IArticle;
+  series: {
+    name:string
+  }
 }

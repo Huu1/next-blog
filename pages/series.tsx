@@ -3,7 +3,7 @@ import SeriesCard from "../components/SeriesCard";
 import { API } from "../config";
 
 export async function getStaticProps() {
-  const res = await fetch(`${API}/classic/tagCount`);
+  const res = await fetch(`${API}/series`);
   const series = await res.json();
   return { props: { seriesList: series?.data || [] }, revalidate: 10 };
 }

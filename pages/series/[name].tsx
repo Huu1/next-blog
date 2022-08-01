@@ -5,13 +5,13 @@ import { IArticle } from "../../types";
 
 export async function getStaticPaths() {
   // 调用外部 API 获取博文列表
-  const res = await fetch(`${API}/classic/allTag`);
-  const labelList = await res.json();
+  const res = await fetch(`${API}/series`);
+  const result = await res.json();
 
   // 据博文列表生成所有需要预渲染的路径
-  const paths = Array.isArray(labelList.data)
-    ? labelList.data.map(({ tagId: id }: any) => ({
-        params: { id },
+  const paths = Array.isArray(result.data)
+    ? result.data.map(({ series_name }: any) => ({
+        params: { name: series_name },
       }))
     : [];
 
@@ -23,27 +23,23 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }: any) {
   // params 包含此片博文的 `id` 信息。
   // 如果路由是 /posts/1，那么 params.id 就是 1
-  const res = await fetch(`${API}/classic/tag/${params.id}`);
+  const res = await fetch(`${API}/series/${params.name}`);
 
   const posts = await res.json();
 
   // 通过 props 参数向页面传递博文的数据
-  return { props: { posts: posts?.data || null }, revalidate: 10 };
+  return { props: { posts: posts?.data?.list || [] }, revalidate: 10 };
 }
 
-export default function Labels(
-  { posts }: { posts: { title: string; article: IArticle[] } } = {
-    posts: { title: "null", article: [] },
-  }
-) {
+export default function Series(props: any) {
   return (
     <>
-      <div className="space-y-2 pt-4 pb-6 md:space-y-5">
+      {/* <div className="space-y-2 pt-4 pb-6 md:space-y-5">
         <h1 className="text-2xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 ">
           {posts.title}
         </h1>
-      </div>
-      {<PostCard list={posts.article} />}
+      </div> */}
+      {<PostCard list={props.posts} />}
     </>
   );
 }

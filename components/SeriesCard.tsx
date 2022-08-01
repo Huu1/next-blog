@@ -6,17 +6,17 @@ import Card from "./Card";
 const SeriesCard = (props: { list: Series[] }) => {
   return (
     <>
-      {props.list?.map((series: Series) => {
+      {props.list?.map((series: Series,index) => {
         return (
-          <Card key={series.id} background={series.tag_background}>
+          <Card key={index} background={series.series_background}>
             <>
-              <Link href={"/series/" + series.tag_title} passHref>
+              <Link href={"/series/" + series.series_name} passHref>
                 <h3 className="text-2xl mb-2 font-black  cursor-pointer text-light-title dark:text-dark-title">
-                  {series.tag_title}
+                  {series.series_title}
                 </h3>
               </Link>
               <p className="mb-7 select-none	 text-base mt-1 text-light-text dark:text-dark-text">
-                {series.tag_content}
+                {series.series_description}
               </p>
               <small className="text-sm select-none	  text-light-text dark:text-dark-text tracking-wide">
                 共{` ${series.count} `}篇文章

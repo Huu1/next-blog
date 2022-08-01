@@ -15,7 +15,12 @@ const PostCard = (props: { list: IArticle[] }) => {
         return (
           <Card key={article.articleId} background={article.background}>
             <>
-              <Link href={"/post/" + article.articleId} passHref>
+              <Link
+                href={
+                  `${article.series?.name ? article.series.name : "/post"}/${article.articleId}`
+                }
+                passHref
+              >
                 <h3 className="text-2xl mb-2 font-black  cursor-pointer text-light-title dark:text-dark-title">
                   {article.title}
                 </h3>
