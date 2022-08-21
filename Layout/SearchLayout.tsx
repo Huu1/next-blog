@@ -1,5 +1,4 @@
 import * as React from "react";
-import Article from "../components/Article";
 import PostCard from "../components/postCard";
 import { IArticle } from "../types";
 

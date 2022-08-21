@@ -3,12 +3,12 @@ import React from "react";
 import { Series } from "../types";
 import Card from "./Card";
 
-const SeriesCard = (props: { list: Series[] }) => {
+const SeriesCardList = (props: { list: Series[] }) => {
   return (
     <>
       {props.list?.map((series: Series,index) => {
         return (
-          <Card key={index} background={series.series_background}>
+          <Card key={index} background={series.media_url}>
             <>
               <Link href={"/series/" + series.series_name} passHref>
                 <h3 className="text-2xl mb-2 font-black  cursor-pointer text-light-title dark:text-dark-title">
@@ -29,4 +29,4 @@ const SeriesCard = (props: { list: Series[] }) => {
   );
 };
 
-export default SeriesCard;
+export default SeriesCardList;

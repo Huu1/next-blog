@@ -105,7 +105,7 @@ function Header({ router }: any) {
               key={link.title}
               href={link.href}
               className={`p-1 font-medium  sm:p-4 flex fill-current ${
-                router.pathname === link.href
+                router.asPath  === link.href
                   ? " text-light-active dark:text-dark-active"
                   : "text-light-text dark:text-dark-text"
               }`}

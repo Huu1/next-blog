@@ -13,11 +13,13 @@ const PostCard = (props: { list: IArticle[] }) => {
     <>
       {props.list?.map((article: IArticle) => {
         return (
-          <Card key={article.articleId} background={article.background}>
+          <Card key={article.articleId} background={article.media?.url}>
             <>
               <Link
                 href={
-                  `${article.series?.name ? article.series.name : "/post"}/${article.articleId}`
+                  article.series?.name
+                    ? `/series/${article.series.name}/${article.articleId}`
+                    : `/post/${article.articleId}`
                 }
                 passHref
               >

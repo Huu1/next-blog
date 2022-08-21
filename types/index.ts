@@ -11,24 +11,31 @@ export interface IArticleUser {
 }
 
 interface IATag {
-  tagId: string;
+  id: string;
   title: string;
+  name: string;
+  background: string;
+  description: string;
 }
 
-export type Series ={
-  series_description?: string
-  series_createTime?: number
-  series_status?:string
-  series_id?: string
-  series_title?: string
-  series_name?: string
-  series_background?: string
-  count?:string
-}
+export type Series = {
+  series_description?: string;
+  series_createTime?: number;
+  series_status?: string;
+  series_id: string;
+  series_title?: string;
+  series_name?: string;
+  series_background?: string;
+  count?: string;
+  media_id?: string;
+  media_thumbUrl?: string;
+  media_type?: string;
+  media_url?: string;
+};
 
 export interface IArticle {
-  time:number;
-  tag: IATag;
+  time: number;
+  tag: IATag[];
   user: IArticleUser;
   content: IArticleContent;
   articleId: string;
@@ -48,6 +55,7 @@ export interface IArticle {
   next?: IArticle;
   previous?: IArticle;
   series: {
-    name:string
-  }
+    name: string;
+  };
+  media:any;
 }

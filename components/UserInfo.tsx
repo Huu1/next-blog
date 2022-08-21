@@ -3,24 +3,13 @@ import React, { useContext } from "react";
 import { siteMetadata } from "../siteMetadata";
 import avatar from "../public/img.jpg";
 import Link from "next/link";
-import { musicContext } from "../context/musicContext";
 
 const imgWidth = 72;
 
 const UserInfo = (props: any) => {
-  const [audio] = useContext<any>(musicContext);
-  const musicClickHandle=()=>{
-    if (audio) {
-      if (audio.paused) {
-        audio.play();
-      } else {
-        audio.pause();
-      }
-    }
-  }
   return (
     <div className="flex justify-start items-center mb-10 mt-7 text-base">
-      <div className="mr-4 play" onClick={musicClickHandle}>
+      <div className="mr-4 play" >
         <Image
           objectFit="cover"
           width={imgWidth}

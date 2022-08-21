@@ -1,7 +1,6 @@
 import React from "react";
 import PostCard from "../../components/postCard";
 import { API } from "../../config";
-import { IArticle } from "../../types";
 
 export async function getStaticPaths() {
   // 调用外部 API 获取博文列表
@@ -26,19 +25,21 @@ export async function getStaticProps({ params }: any) {
   const res = await fetch(`${API}/series/${params.name}`);
 
   const posts = await res.json();
+  
 
   // 通过 props 参数向页面传递博文的数据
-  return { props: { posts: posts?.data?.list || [] }, revalidate: 10 };
+  return { props: { posts: posts?.data?.list || [] ,series :posts?.data?.series}, revalidate: 10 };
 }
 
 export default function Series(props: any) {
+  
   return (
     <>
-      {/* <div className="space-y-2 pt-4 pb-6 md:space-y-5">
+      <div className="space-y-2 pt-4 pb-6 md:space-y-5">
         <h1 className="text-2xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 ">
-          {posts.title}
+          {props.series.title}
         </h1>
-      </div> */}
+      </div>
       {<PostCard list={props.posts} />}
     </>
   );

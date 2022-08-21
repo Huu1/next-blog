@@ -17,6 +17,7 @@ const Card = (props: {
       {background && (
         <div className=" w-full h-80 relative  ">
           <Image
+            unoptimized
             loader={myLoader}
             src={`${background}`}
             alt="图片丢了"
