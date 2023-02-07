@@ -27,14 +27,14 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }: any) {
   if (params?.id?.length > 2) {
-    return { props: { post: [], noMatch: true }, revalidate: 10 };
+    return { props: { post: [], noMatch: true }, revalidate: 60 };
   } else {
     const [seriesName, id] = params?.id;
     const res = await fetch(`${API}/series/${seriesName}/${id}`);
     const post = await res.json();
 
     // 通过 props 参数向页面传递博文的数据
-    return { props: { post: post?.data, noMatch: false }, revalidate: 10 };
+    return { props: { post: post?.data, noMatch: false }, revalidate: 60 };
   }
 }
 

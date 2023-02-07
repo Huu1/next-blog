@@ -5,7 +5,7 @@ import { API } from "../config";
 export async function getStaticProps() {
   const res = await fetch(`${API}/tag`);
   const tags = await res.json();
-  return { props: { data: tags.data || [] }, revalidate: 10 };
+  return { props: { data: tags.data || [] }, revalidate: 60 };
 }
 
 export default function Tag({ data }: any) {

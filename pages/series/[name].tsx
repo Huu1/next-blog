@@ -28,7 +28,7 @@ export async function getStaticProps({ params }: any) {
   
 
   // 通过 props 参数向页面传递博文的数据
-  return { props: { posts: posts?.data?.list || [] ,series :posts?.data?.series}, revalidate: 10 };
+  return { props: { posts: posts?.data?.list || [] ,series :posts?.data?.series}, revalidate: 60 };
 }
 
 export default function Series(props: any) {

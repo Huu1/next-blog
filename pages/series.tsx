@@ -5,7 +5,7 @@ import { API } from "../config";
 export async function getStaticProps() {
   const res = await fetch(`${API}/series`);
   const series = await res.json();
-  return { props: { seriesList: series?.data || [] }, revalidate: 10 };
+  return { props: { seriesList: series?.data || [] }, revalidate: 60 };
 }
 
 export default function label({ seriesList }: any) {

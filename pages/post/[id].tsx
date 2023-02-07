@@ -28,7 +28,7 @@ export async function getStaticProps({ params }: any) {
   const post = await res.json();
   
   // 通过 props 参数向页面传递博文的数据
-  return { props: { post: post.data }, revalidate: 10 };
+  return { props: { post: post.data }, revalidate: 60 };
 }
 
 const Post = ({ post }: any) => <PostPage post={post} />;
