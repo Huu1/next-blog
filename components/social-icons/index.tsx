@@ -4,21 +4,19 @@ import Image from "next/image";
 import Mail from "../../public/mail.svg";
 import Github from "../../public/github.svg";
 
-
-
 const components: any = {
   mail: Mail,
   github: Github,
 };
 
-const  SocialIcon = function ({ kind, href, size = 26 }: any) {
+const SocialIcon = function ({ kind, href, size = 26 }: any) {
   if (
     !href ||
     (kind === "mail" &&
       !/^mailto:\w+([.-]?\w+)@\w+([.-]?\w+)(.\w{2,3})+$/.test(href))
   )
     return <></>;
-  const SocialSvg = components[kind]
+  const SocialSvg = components[kind];
 
   return (
     <a
@@ -28,9 +26,9 @@ const  SocialIcon = function ({ kind, href, size = 26 }: any) {
       href={href}
     >
       <span className="sr-only">{kind}</span>
-         <Image src={SocialSvg}   alt='图片丢了' width={size} height={size} />
+      <Image src={SocialSvg} alt="图片丢了" width={size} height={size} />
     </a>
   );
-}
+};
 
-export default SocialIcon
+export default SocialIcon;

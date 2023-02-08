@@ -1,9 +1,11 @@
+import dayjs from "dayjs";
 import { withRouter } from "next/router";
 import React from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { IArticle } from "../types";
 import Tag from "./Tag";
+import {coffeeNum} from '../utils'
 
 const PostPage = ({
   post,
@@ -13,8 +15,12 @@ const PostPage = ({
   children?: React.ReactChildren;
 }) => {
   return (
-    <div className="mt-10 mb-14">
-      <article className="prose prose-slate    max-w-none overflow-hidden dark:prose-invert md:prose-base lg:prose-lg">
+    <div className="mt-10 mb-10">
+      <div className=" text-2xl font-semibold	 mb-1 text-light-text dark:text-dark-text ">{post.title}</div>
+      <small className=" text-sm select-none tracking-widest	  text-light-text dark:text-dark-text 	">
+        发布于{dayjs(post.time).format("YYYY·MM·DD")} · 预计阅读{post.readTime}分钟
+      </small>
+      <article className="prose prose-slate mt-6  max-w-none overflow-hidden dark:prose-invert md:prose-sm  lg:prose-md md:prose-h1:text-2xl">
         <ReactMarkdown remarkPlugins={[[remarkGfm, { singleTilde: false }]]}>
           {post?.content?.content}
         </ReactMarkdown>
@@ -39,14 +45,13 @@ const PostPage = ({
         <span className=" inline-block ml-1">Tags</span>
       </div>
       <div className="text-base flex-wrap mt-4 flex dark:text-gray-400">
-        {post?.tag
-          .map(({ id, title }: any) => {
-            return (
-              <Tag className="mr-3 mb-2" key={id} url={`/tags/${title}`}>
-                {title}
-              </Tag>
-            );
-          })}
+        {post?.tag.map(({ id, title }: any) => {
+          return (
+            <Tag className="mr-3 mb-2" key={id} url={`/tags/${title}`}>
+              {title}
+            </Tag>
+          );
+        })}
       </div>
       {children}
     </div>

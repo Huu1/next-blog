@@ -11,14 +11,17 @@ export async function getStaticProps() {
   // 在构建时将接收到 `posts` 参数
   return {
     props: {
-      posts: posts?.data?.list ?? []
+      posts: posts?.data?.list ?? [],
     },
     revalidate: 60,
   };
 }
-const Home: NextPage = ({ posts ,userAgent }: any) => {
-  return <PostCard list={posts} />;
+const Home: NextPage = ({ posts }: any) => {
+  return (
+    <div className=" mt-6">
+      <PostCard list={posts} />
+    </div>
+  );
 };
-
 
 export default Home;

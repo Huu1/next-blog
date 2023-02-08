@@ -10,7 +10,13 @@ const CardWrap = dynamic(() => import("./lazyCard"), {
 });
 
 const Content = (props: any) => {
-  return <div className="p-4 pt-5 select-none flex-1 flex flex-col" style={{flex:'50% 1 1'}}>{props.children}</div>;
+  return (
+    <div
+      className="p-4 pt-5 select-none flex-1 flex flex-col"
+    >
+      {props.children}
+    </div>
+  );
 };
 
 const MyImage = ({
@@ -21,15 +27,15 @@ const MyImage = ({
   isMobile?: boolean;
 }) => {
   return (
-    <div className=" flex-1  relative  " style={{flex:'50% 1 1'}}>
+    <div className=" flex-1  relative  " >
       <Image
         unoptimized
         loader={myLoader}
         src={`${background}`}
         alt="图片丢了"
         width={"100%"}
-        height={ isMobile ? 50: 70}
-        className=" transition-all	 duration-300	"
+        height={isMobile ? 50 :35}
+        className=" transition-all	 duration-500	"
         onMouseEnter={({ target }) => {
           (target as HTMLImageElement).style.transform = "scale(1.2)";
         }}
@@ -37,6 +43,7 @@ const MyImage = ({
           (target as HTMLImageElement).style.transform = "scale(1)";
         }}
         layout="responsive"
+        priority 
       />
     </div>
   );
@@ -49,44 +56,17 @@ const Card = (props: {
   background?: string;
   index?: number;
 }) => {
-  const { background, className, style, index=0, children } = props;
+  const { background, className, style,  children } = props;
   const classStyle = {
     className,
     style,
   };
 
-  if (isMobile) {
-    return (
-      <CardWrap
-        {...classStyle}
-        style={{ ...style, display: isMobile ? "block" : "flex" }}
-      >
-        {background && <MyImage isMobile background={background} />}
-        <Content>{children}</Content>
-      </CardWrap>
-    );
-  }
-
-  if (!background) {
-    return (
-      <CardWrap {...classStyle}>
-        <Content>{children}</Content>
-      </CardWrap>
-    );
-  }
-
-  if (index % 2 === 0) {
-    return (
-      <CardWrap {...classStyle}>
-        <Content>{children}</Content>
-        <MyImage background={background} />
-      </CardWrap>
-    );
-  }
-
   return (
-    <CardWrap {...classStyle}>
-      <MyImage background={background} />
+    <CardWrap
+      {...classStyle}
+    >
+      {background && <MyImage isMobile background={background} />}
       <Content>{children}</Content>
     </CardWrap>
   );

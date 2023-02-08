@@ -4,8 +4,6 @@ import { IArticle, Series } from "../types";
 import Card from "./Card";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
-import { coffeeNum } from "../utils";
-import TagCardList from "./TagCardList";
 import Tag from "./Tag";
 dayjs.locale("zh-cn");
 dayjs.extend(relativeTime);
@@ -21,9 +19,6 @@ const PostCard = (props: { list: IArticle[] }) => {
             index={index}
           >
             <>
-              <small className="text-sm select-none	  text-light-text dark:text-dark-text tracking-wide 	">
-                🕒 发布于{dayjs(article.time).format("YYYY-MM-DD HH:mm:ss")}{" "}
-              </small>
               <Link
                 href={
                   article.series?.name
@@ -32,26 +27,28 @@ const PostCard = (props: { list: IArticle[] }) => {
                 }
                 passHref
               >
-                <h3 className="text-xl mb-3 ml-1 mt-4 font-black  cursor-pointer text-light-title dark:text-dark-title">
-                  {article.title}
-                </h3>
+                <div>
+                  <h3 className="text-xl mb-3 ml-1 mt-0 font-black  cursor-pointer text-light-title dark:text-dark-title">
+                    {article.title}
+                  </h3>
+                  <p className="mb-7 select-none ml-1	 text-base mt-1 text-light-text dark:text-dark-text">
+                    {article.brief}
+                  </p>
+                </div>
               </Link>
-              <p className="mb-7 select-none ml-1	 text-base mt-1 text-light-text dark:text-dark-text">
-                {article.brief}
-              </p>
-              <div
-                className="  mt-auto"
-                style={{
-                  textAlign: index % 2 === 0 ? "left" : "right",
-                }}
-              >
-                {article?.tag.map(({ id, title }: any) => {
-                  return (
-                    <Tag className="mr-3 mb-2" key={id} url={`/tags/${title}`}>
-                      {title}
-                    </Tag>
-                  );
-                })}
+              <div className="  mt-auto flex justify-between items-center">
+                <small className=" text-xs select-none tracking-widest	  text-light-text dark:text-dark-text 	">
+                  📅 发布于{dayjs(article.time).format("YYYY·MM·DD")}
+                </small>
+                <span>
+                  {article?.tag.map(({ id, title }: any) => {
+                    return (
+                      <Tag className="mr-3" key={id} url={`/tags/${title}`}>
+                        {title}
+                      </Tag>
+                    );
+                  })}
+                </span>
               </div>
             </>
           </Card>

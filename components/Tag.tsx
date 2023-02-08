@@ -9,7 +9,7 @@ const Tag = (props: {
   return (
     <Link href={props.url} passHref>
       <span
-        className={`${props.className} text-sm rounded cursor-pointer pb-1 round  px-4 border    pl-1 `}
+        className={`${props.className} text-xs rounded cursor-pointer pb-1   px-2 border    pl-1 `}
         style={{ background: "#eee" ,color: "#797979" }}
       >
        🏷️ {props.children}

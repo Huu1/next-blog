@@ -7,7 +7,7 @@ const Wrap = (props: {
   return (
     <div
       style={{ maxWidth: 620, ...style }}
-      className={` bg-light-card_bg dark:bg-dark-card_bg my-0 m-auto mb-5 shadow-lg  flex  rounded-md overflow-hidden ${className}`}
+      className={` bg-light-card_bg dark:bg-dark-card_bg my-0 m-auto mb-5 shadow-lg  hover:shadow-xl transition-all cursor-pointer  rounded-md overflow-hidden ${className}`}
     >
       {children}
     </div>
