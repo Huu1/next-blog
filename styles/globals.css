@@ -18,7 +18,22 @@
   display: block;
   height: 2.5rem;
   line-height: 2.5rem;
-  background: rgba(10, 10, 10, 0.1);
   z-index: 999;
   text-align: center;
+}
+
+.article-card:hover {
+  box-shadow: 0 5px 40px rgb(0 0 0 / 4%);
+}
+
+.app-header {
+
+  position: fixed;
+  top: 0;
+  backdrop-filter: saturate(180%) blur(5px);
+  background: hsla(0,0%,100%,.8);
+  z-index: 3000;
+  transition: background .6s ease;
+  border-bottom: 1px solid #eaeaea;
+  transform: translateZ(0);
 }

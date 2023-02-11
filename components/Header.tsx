@@ -3,7 +3,8 @@ import React from "react";
 import MobileNav from "./MobileNav";
 import ThemeSwitch from "./ThemeSwitch";
 import { siteMetadata } from "../siteMetadata";
-import { useRouter, withRouter } from "next/router";
+import { withRouter } from "next/router";
+import Page from "./Page";
 
 export const RouterList = [
   {
@@ -90,34 +91,39 @@ export const RouterList = [
   },
 ];
 
-function Header({ router }: any) {
+function Header(props: any) {
+  const { router } = props;
+
   return (
-    <div className="flex justify-between items-center">
-      <Link href="/">
-        <h1 className="text-3xl font-black dark:text-white cursor-pointer">
-          {siteMetadata.headerTitle}
-        </h1>
-      </Link>
-      <div className="flex items-center text-base leading-5">
-        <div className=" sm:flex hidden">
-          {RouterList.map((link) => (
-            <Link
-              key={link.title}
-              href={link.href}
-              className={`p-1 font-medium  sm:p-4 flex fill-current ${
-                router.asPath  === link.href
-                  ? " text-light-active dark:text-dark-active"
-                  : "text-light-text dark:text-dark-text"
-              }`}
-            >
-              {link.svg}
-              <span className=" ml-2 inline-block">{link.title}</span>
-            </Link>
-          ))}
-        </div>
-        <ThemeSwitch />
-        <MobileNav />
-      </div>
+    <div className=" w-full pt-0">
+      <Page className="flex h-16 pt-0 justify-between items-center">
+        <>
+          <Link href="/">
+            <h1 className="text-3xl font-black dark:text-white cursor-pointer ">
+              {siteMetadata.headerTitle}
+            </h1>
+          </Link>
+          <div className="flex items-center text-base ">
+            <div className=" sm:flex hidden">
+              {RouterList.map((link) => (
+                <Link
+                  key={link.title}
+                  href={link.href}
+                  className={`p-1 font-medium  sm:p-4 flex fill-current ${
+                    router.asPath === link.href
+                      ? " text-light-active dark:text-dark-active"
+                      : "text-light-text dark:text-dark-text"
+                  }`}
+                >
+                  {link.svg}
+                  <span className=" ml-2 inline-block">{link.title}</span>
+                </Link>
+              ))}
+            </div>
+            <MobileNav />
+          </div>
+        </>
+      </Page>
     </div>
   );
 }

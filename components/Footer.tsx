@@ -2,6 +2,7 @@ import Link from "next/link";
 import { siteMetadata } from "../siteMetadata";
 import SocialIcon from "./social-icons";
 import Github from "../../public/github.svg";
+import ThemeSwitch from "./ThemeSwitch";
 
 export default function Footer() {
   return (
@@ -13,6 +14,9 @@ export default function Footer() {
           <div>{`© ${new Date().getFullYear()}`}</div>
           <div>{` • `}</div>
           <SocialIcon kind="github" size={20} href={siteMetadata.github} />
+          <div>{` • `}</div>
+
+          <ThemeSwitch />
         </div>
       </div>
     </footer>

@@ -17,11 +17,7 @@ export async function getStaticProps() {
   };
 }
 const Home: NextPage = ({ posts }: any) => {
-  return (
-    <div className=" mt-6">
-      <PostCard list={posts} />
-    </div>
-  );
+  return <PostCard list={posts} />;
 };
 
 export default Home;

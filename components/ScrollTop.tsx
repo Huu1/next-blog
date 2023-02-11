@@ -22,7 +22,7 @@ export default function ScrollTop(
     className
   }:IScrollTop
 ) {
-  const [visible, setVisible] = useState(true);
+  const [visible, setVisible] = useState(false);
 
   /**
    * 监听滚动事件 判断是否显示组件按钮
@@ -120,10 +120,10 @@ export default function ScrollTop(
     visible ? (
       <div
         style={style}
-        className={`ScrollToTopButton dark:bg-gray-100 ${className}`}
+        className={`ScrollToTopButton  ${className}`}
         onClick={onClickScrolltopHandle}
       >
-        🔝
+        🚀
       </div>
     ):<></>
   );

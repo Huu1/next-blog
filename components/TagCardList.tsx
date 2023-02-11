@@ -4,7 +4,7 @@ import Card from "./Card";
 
 export default function TagCardList({ data }: { data: any[] }) {
   return (
-    <>
+    <div className="">
       <div className="flex flex-wrap justify-start flex-1">
         {data?.map((t: any) => {
           return (
@@ -29,6 +29,6 @@ export default function TagCardList({ data }: { data: any[] }) {
           );
         })}
       </div>
-    </>
+    </div>
   );
 }

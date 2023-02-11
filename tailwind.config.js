@@ -11,7 +11,7 @@ module.exports = {
       colors: {
         light: {
           bg: "#F6F7F8",
-          text: "#333E55",
+          text: "#696969",
           link: "#FF6200",
           title: "#343E55",
           desc_bg: "rgba(244,160,107,0.22)",
@@ -30,6 +30,8 @@ module.exports = {
           active: "rgb(0,164,128)",
           disabled: "#ced4e1",
           white: "#fff3eb",
+          readmore:"#0070f3",
+          readmoreBg:"rgba(0,118,255,.1)",
         },
         dark: {
           bg: "#1e2330",

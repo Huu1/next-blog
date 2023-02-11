@@ -1,4 +1,5 @@
 import * as React from "react";
+import Page from "../components/Page";
 import SeriesCardList from "../components/SeriesCardList";
 import { API } from "../config";
 
@@ -10,8 +11,8 @@ export async function getStaticProps() {
 
 export default function label({ seriesList }: any) {
   return (
-    <div className="pt-8">
+    <Page className=" pt-8">
       <SeriesCardList list={seriesList} />
-    </div>
+    </Page>
   );
 }

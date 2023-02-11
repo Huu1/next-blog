@@ -1,7 +1,7 @@
 export const siteMetadata = {
   title: "hy的博客",
   headerTitle: "踏遍青山人未老，",
-  author: "Hu Yao",
+  author: "hy",
   TStack: "React Angular",
   occupation: "前端开发",
   description: "记一些记不住的东西",
